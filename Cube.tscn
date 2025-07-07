@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://8vm2t1tvr37y"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_xc3wn"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jbd7x"]
+
+[node name="Cube" type="Node3D"]
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+mesh = SubResource("BoxMesh_xc3wn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("BoxShape3D_jbd7x")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="Generic6DOFJoint3D" type="Generic6DOFJoint3D" parent="."]
+node_a = NodePath("../RigidBody3D")
+node_b = NodePath("../StaticBody3D")
+linear_limit_x/enabled = false
+linear_limit_y/enabled = false

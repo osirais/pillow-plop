@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwoo70sufo0ax"]
+
+[ext_resource type="PackedScene" uid="uid://beslhciee5yaq" path="res://Container3D.tscn" id="1_2dftf"]
+[ext_resource type="PackedScene" uid="uid://8vm2t1tvr37y" path="res://Cube.tscn" id="2_bcbcq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2dftf"]
+transparency = 1
+cull_mode = 2
+albedo_color = Color(1, 1, 1, 0.0784314)
+roughness = 0.1
+refraction_enabled = true
+refraction_scale = 1.0
+
+[node name="World" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.358618, 0.610602, 22.6169)
+projection = 1
+size = 8.0
+
+[node name="Container3D" parent="." instance=ExtResource("1_2dftf")]
+wall_material = SubResource("StandardMaterial3D_2dftf")
+
+[node name="Cube" parent="." instance=ExtResource("2_bcbcq")]
+transform = Transform3D(0.915775, 0.401692, -1.59961e-08, -0.395924, 0.902626, 0.168851, 0.0678259, -0.154629, 0.985642, 0, 4.57724, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.190796, 2.81993, 3.80954)
+omni_range = 13.7057
