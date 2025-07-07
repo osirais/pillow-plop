@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://dtfhpmgpblsyk"]
+
+[ext_resource type="Script" uid="uid://cl54lfd3n4go1" path="res://rigid_body_2d.gd" id="1_xqjo8"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_c32mu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pogk5"]
+
+[sub_resource type="Texture2DRD" id="Texture2DRD_xqjo8"]
+
+[node name="Bed" type="Node2D"]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+script = ExtResource("1_xqjo8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+material = SubResource("CanvasItemMaterial_c32mu")
+scale = Vector2(0.1, 0.1)
+shape = SubResource("RectangleShape2D_pogk5")
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+texture = SubResource("Texture2DRD_xqjo8")
