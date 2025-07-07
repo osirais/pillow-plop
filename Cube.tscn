@@ -21,3 +21,4 @@ node_a = NodePath("../RigidBody3D")
 node_b = NodePath("../StaticBody3D")
 linear_limit_x/enabled = false
 linear_limit_y/enabled = false
+linear_limit_z/enabled = false
