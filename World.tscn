@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bwoo70sufo0ax"]
+[gd_scene load_steps=15 format=3 uid="uid://bwoo70sufo0ax"]
 
 [ext_resource type="PackedScene" uid="uid://beslhciee5yaq" path="res://Container3D.tscn" id="1_2dftf"]
 [ext_resource type="PackedScene" uid="uid://8vm2t1tvr37y" path="res://Cube.tscn" id="2_bcbcq"]
@@ -19,6 +19,20 @@ refraction_scale = 1.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_bcbcq"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_js7pq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eu7l1"]
+albedo_color = Color(1, 0.0509804, 0.0666667, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_p1v5b"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_eu7l1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p1v5b"]
+albedo_color = Color(1, 0.0509804, 0.0666667, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wygdx"]
+
 [node name="World" type="Node3D"]
 script = SubResource("GDScript_bcbcq")
 
@@ -31,7 +45,7 @@ depth = 10.0
 wall_material = SubResource("StandardMaterial3D_2dftf")
 
 [node name="Cube" parent="." instance=ExtResource("2_bcbcq")]
-transform = Transform3D(0.87224, 0.487356, -0.0410189, -0.488438, 0.872319, -0.0220661, 0.0250274, 0.0392826, 0.998915, 0, 4.57724, 0)
+transform = Transform3D(0.87224, 0.487356, -0.0410189, -0.488438, 0.872319, -0.0220661, 0.0250274, 0.0392826, 0.998915, 0, 0, 0)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.190796, 2.81993, 3.80954)
@@ -51,3 +65,29 @@ transform = Transform3D(0.461687, 0.281345, 0.841243, 0.224375, 0.880487, -0.417
 
 [node name="Dropper" parent="." instance=ExtResource("4_js7pq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.106, 0)
+dropper_position = Vector3(0, 2, 0)
+
+[node name="DropperRigidBody" type="RigidBody3D" parent="Dropper"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10.106, 0)
+collision_layer = 0
+collision_mask = 0
+gravity_scale = 0.0
+
+[node name="@CollisionShape3D@30609" type="CollisionShape3D" parent="Dropper/DropperRigidBody"]
+shape = SubResource("BoxShape3D_js7pq")
+disabled = true
+
+[node name="@MeshInstance3D@30610" type="MeshInstance3D" parent="Dropper/DropperRigidBody"]
+material_override = SubResource("StandardMaterial3D_eu7l1")
+mesh = SubResource("BoxMesh_p1v5b")
+
+[node name="@RigidBody3D@31008" type="RigidBody3D" parent="Dropper"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8.106, 0)
+gravity_scale = 0.0
+
+[node name="@CollisionShape3D@31009" type="CollisionShape3D" parent="Dropper/@RigidBody3D@31008"]
+shape = SubResource("BoxShape3D_eu7l1")
+
+[node name="@MeshInstance3D@31010" type="MeshInstance3D" parent="Dropper/@RigidBody3D@31008"]
+material_override = SubResource("StandardMaterial3D_p1v5b")
+mesh = SubResource("BoxMesh_wygdx")

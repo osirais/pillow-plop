@@ -60,16 +60,16 @@ func _physics_process(delta):
 	rigid_body.linear_velocity.y = 0
 
 func _create_body():
-	if rigid_body and rigid_body.is_inside_tree():
-		remove_child(rigid_body)
-		rigid_body.queue_free()
-		rigid_body = null
+	for child in get_children():
+		if child is RigidBody3D:
+			remove_child(child)
+			child.queue_free()
 
 	rigid_body = RigidBody3D.new()
 	rigid_body.name = "DropperRigidBody"
 	rigid_body.gravity_scale = 0
-	rigid_body.collision_layer = 0
-	rigid_body.collision_mask = 0
+	rigid_body.collision_layer = 1
+	rigid_body.collision_mask = 1
 	add_child(rigid_body)
 	rigid_body.owner = self.get_owner()
 
@@ -79,7 +79,7 @@ func _create_body():
 	var box_shape = BoxShape3D.new()
 	box_shape.size = size
 	collision.shape = box_shape
-	collision.disabled = true
+	collision.disabled = false
 	rigid_body.add_child(collision)
 	collision.owner = self.get_owner()
 
@@ -100,11 +100,10 @@ func _update_body_color():
 
 	for child in rigid_body.get_children():
 		if child is MeshInstance3D:
-			if child.material_override:
-				var mat = child.material_override.duplicate()
-				mat.albedo_color = body_color
-				child.material_override = mat
+			var mat = child.material_override
+			if mat:
+				mat = mat.duplicate()
 			else:
-				var mat = StandardMaterial3D.new()
-				mat.albedo_color = body_color
-				child.material_override = mat
+				mat = StandardMaterial3D.new()
+			mat.albedo_color = body_color
+			child.material_override = mat
