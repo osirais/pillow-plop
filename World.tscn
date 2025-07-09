@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bwoo70sufo0ax"]
+[gd_scene load_steps=6 format=3 uid="uid://bwoo70sufo0ax"]
 
 [ext_resource type="PackedScene" uid="uid://beslhciee5yaq" path="res://Container3D.tscn" id="1_2dftf"]
 [ext_resource type="PackedScene" uid="uid://ca2rlv35psmj" path="res://viewer.tscn" id="4_eu7l1"]
@@ -14,18 +14,11 @@ roughness = 0.1
 refraction_enabled = true
 refraction_scale = 1.0
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_bcbcq"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_js7pq"]
-albedo_color = Color(1, 0, 0, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_eu7l1"]
-
 [node name="World" type="Node3D"]
 script = SubResource("GDScript_bcbcq")
 
 [node name="Viewer" parent="." instance=ExtResource("4_eu7l1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 
 [node name="Container3D" parent="." instance=ExtResource("1_2dftf")]
 height = 10.0
@@ -42,14 +35,3 @@ body_color = Color(1, 0, 0, 1)
 size = Vector3(1, 1, 1)
 speed = 5.0
 dropper_position = Vector3(0, 0, 0)
-
-[node name="DropperRigidBody" type="RigidBody3D" parent="Dropper"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10.106, 0)
-gravity_scale = 0.0
-
-[node name="@CollisionShape3D@52088" type="CollisionShape3D" parent="Dropper/DropperRigidBody"]
-shape = SubResource("BoxShape3D_bcbcq")
-
-[node name="@MeshInstance3D@52089" type="MeshInstance3D" parent="Dropper/DropperRigidBody"]
-material_override = SubResource("StandardMaterial3D_js7pq")
-mesh = SubResource("BoxMesh_eu7l1")
