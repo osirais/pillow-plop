@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bwoo70sufo0ax"]
+[gd_scene load_steps=8 format=3 uid="uid://bwoo70sufo0ax"]
 
 [ext_resource type="PackedScene" uid="uid://beslhciee5yaq" path="res://Container3D.tscn" id="1_2dftf"]
 [ext_resource type="Script" uid="uid://dky7sd4ek7afn" path="res://world.gd" id="1_tlwt5"]
 [ext_resource type="PackedScene" uid="uid://8vm2t1tvr37y" path="res://Cube.tscn" id="2_bcbcq"]
+[ext_resource type="PackedScene" uid="uid://b133o5xk20s7n" path="res://player.tscn" id="2_js7pq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2dftf"]
 transparency = 1
@@ -18,6 +19,8 @@ refraction_scale = 1.0
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_tlwt5")
+
+[node name="Player" parent="." instance=ExtResource("2_js7pq")]
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.358618, 0.610602, 22.6169)
