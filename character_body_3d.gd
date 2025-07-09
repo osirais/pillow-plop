@@ -30,6 +30,10 @@ func _physics_process(delta):
 		direction -= transform.basis.x
 	if Input.is_action_pressed("move_right"):
 		direction += transform.basis.x
+	if Input.is_action_pressed("move_up"):
+		direction += transform.basis.y
+	if Input.is_action_pressed("move_down"):
+		direction -= transform.basis.y
 
 	direction = direction.normalized()
 	velocity = direction * SPEED
