@@ -68,6 +68,8 @@ func _create_body():
 	rigid_body = RigidBody3D.new()
 	rigid_body.name = "DropperRigidBody"
 	rigid_body.gravity_scale = 0
+	rigid_body.collision_layer = 0
+	rigid_body.collision_mask = 0
 	add_child(rigid_body)
 	rigid_body.owner = self.get_owner()
 
@@ -77,6 +79,7 @@ func _create_body():
 	var box_shape = BoxShape3D.new()
 	box_shape.size = size
 	collision.shape = box_shape
+	collision.disabled = true
 	rigid_body.add_child(collision)
 	collision.owner = self.get_owner()
 

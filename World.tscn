@@ -52,4 +52,3 @@ transform = Transform3D(0.461687, 0.281345, 0.841243, 0.224375, 0.880487, -0.417
 
 [node name="Dropper" parent="." instance=ExtResource("4_js7pq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.106, 0)
-dropper_position = null
