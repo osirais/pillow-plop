@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ca2rlv35psmj"]
+
+[ext_resource type="Script" uid="uid://decbwfcopkmr2" path="res://viewer.gd" id="1_tfsf5"]
+
+[node name="Viewer" type="Node3D"]
+script = ExtResource("1_tfsf5")
+
+[node name="Camera3D" type="Camera3D" parent="."]
