@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bq61dgyfi8ivj"]
+
+[ext_resource type="Script" uid="uid://qbiyqgyhx7cv" path="res://dropper.gd" id="1_6csci"]
+
+[node name="Dropper" type="Node3D"]
+script = ExtResource("1_6csci")
+body_color = Color(1, 0.0509804, 0.0666667, 1)

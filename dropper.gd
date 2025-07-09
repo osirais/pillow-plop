@@ -1,0 +1,88 @@
+@tool
+extends Node3D
+
+@export var body_color: Color = Color(1, 1, 1):
+	set(value):
+		body_color = value
+		_update_body_color()
+
+@export var size: Vector3 = Vector3.ONE:
+	set(value):
+		size = value
+		_create_body()
+
+@export var speed: float = 5.0
+
+var rigid_body: RigidBody3D
+
+func _ready():
+	if not Engine.is_editor_hint():
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	_create_body()
+
+func _physics_process(delta):
+	if Engine.is_editor_hint() or not rigid_body:
+		return
+
+	var direction = Vector3.ZERO
+
+	if Input.is_action_pressed("move_forward"):
+		direction -= rigid_body.transform.basis.z
+	if Input.is_action_pressed("move_back"):
+		direction += rigid_body.transform.basis.z
+	if Input.is_action_pressed("move_left"):
+		direction -= rigid_body.transform.basis.x
+	if Input.is_action_pressed("move_right"):
+		direction += rigid_body.transform.basis.x
+
+	direction.y = 0
+	direction = direction.normalized()
+
+	rigid_body.linear_velocity.x = direction.x * speed
+	rigid_body.linear_velocity.z = direction.z * speed
+	rigid_body.linear_velocity.y = 0
+
+func _create_body():
+	if rigid_body and rigid_body.is_inside_tree():
+		remove_child(rigid_body)
+		rigid_body.queue_free()
+		rigid_body = null
+
+	rigid_body = RigidBody3D.new()
+	rigid_body.name = "DropperRigidBody"
+	rigid_body.gravity_scale = 0
+	add_child(rigid_body)
+	rigid_body.owner = self.get_owner()
+
+	var collision = CollisionShape3D.new()
+	var box_shape = BoxShape3D.new()
+	box_shape.size = size
+	collision.shape = box_shape
+	rigid_body.add_child(collision)
+	collision.owner = self.get_owner()
+
+	var mesh = MeshInstance3D.new()
+	var box_mesh = BoxMesh.new()
+	box_mesh.size = size
+	mesh.mesh = box_mesh
+	rigid_body.add_child(mesh)
+	mesh.owner = self.get_owner()
+
+	var mat = StandardMaterial3D.new()
+	mat.albedo_color = body_color
+	mesh.material_override = mat
+
+func _update_body_color():
+	if not rigid_body:
+		return
+
+	for child in rigid_body.get_children():
+		if child is MeshInstance3D:
+			if child.material_override:
+				var mat = child.material_override.duplicate()
+				mat.albedo_color = body_color
+				child.material_override = mat
+			else:
+				var mat = StandardMaterial3D.new()
+				mat.albedo_color = body_color
+				child.material_override = mat
