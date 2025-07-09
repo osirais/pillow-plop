@@ -8,7 +8,7 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2dftf"]
 transparency = 1
 cull_mode = 2
-albedo_color = Color(1, 1, 1, 0.0784314)
+albedo_color = Color(0.0784314, 1, 1, 0.313726)
 roughness = 0.1
 refraction_enabled = true
 refraction_scale = 1.0
@@ -28,6 +28,8 @@ projection = 1
 size = 8.0
 
 [node name="Container3D" parent="." instance=ExtResource("1_2dftf")]
+height = 10.0
+depth = 10.0
 wall_material = SubResource("StandardMaterial3D_2dftf")
 
 [node name="Cube" parent="." instance=ExtResource("2_bcbcq")]
