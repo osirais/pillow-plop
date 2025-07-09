@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bwoo70sufo0ax"]
+[gd_scene load_steps=9 format=3 uid="uid://bwoo70sufo0ax"]
 
 [ext_resource type="PackedScene" uid="uid://beslhciee5yaq" path="res://Container3D.tscn" id="1_2dftf"]
 [ext_resource type="PackedScene" uid="uid://ca2rlv35psmj" path="res://viewer.tscn" id="4_eu7l1"]
@@ -11,8 +11,14 @@ transparency = 1
 cull_mode = 2
 albedo_color = Color(0.0784314, 1, 1, 0.313726)
 roughness = 0.1
-refraction_enabled = true
 refraction_scale = 1.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bcbcq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_js7pq"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_eu7l1"]
 
 [node name="World" type="Node3D"]
 script = SubResource("GDScript_bcbcq")
@@ -35,3 +41,13 @@ body_color = Color(1, 0, 0, 1)
 size = Vector3(1, 1, 1)
 speed = 5.0
 dropper_position = Vector3(0, 0, 0)
+
+[node name="DropperCharacterBody" type="CharacterBody3D" parent="Dropper"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10.106, 0)
+
+[node name="@CollisionShape3D@63256" type="CollisionShape3D" parent="Dropper/DropperCharacterBody"]
+shape = SubResource("BoxShape3D_bcbcq")
+
+[node name="@MeshInstance3D@63257" type="MeshInstance3D" parent="Dropper/DropperCharacterBody"]
+material_override = SubResource("StandardMaterial3D_js7pq")
+mesh = SubResource("BoxMesh_eu7l1")
