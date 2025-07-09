@@ -42,3 +42,6 @@ shape = SubResource("BoxShape3D_2dftf")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
 mesh = SubResource("BoxMesh_bcbcq")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(0.461687, 0.281345, 0.841243, 0.224375, 0.880487, -0.417611, -0.858196, 0.381559, 0.343382, -2.75082, 4.55348, 0)

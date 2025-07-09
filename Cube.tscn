@@ -1,4 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://8vm2t1tvr37y"]
+[gd_scene load_steps=4 format=3 uid="uid://8vm2t1tvr37y"]
+
+[ext_resource type="Script" uid="uid://bqviwg8sj3tyv" path="res://collision_shape_3d.gd" id="1_k3834"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_xc3wn"]
 
@@ -13,12 +15,17 @@ mesh = SubResource("BoxMesh_xc3wn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
 shape = SubResource("BoxShape3D_jbd7x")
+script = ExtResource("1_k3834")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-
-[node name="Generic6DOFJoint3D" type="Generic6DOFJoint3D" parent="."]
-node_a = NodePath("../RigidBody3D")
-node_b = NodePath("../StaticBody3D")
+[node name="Generic6DOFJoint3D" type="Generic6DOFJoint3D" parent="RigidBody3D"]
+node_a = NodePath("..")
+node_b = NodePath("../../StaticBody3D")
 linear_limit_x/enabled = false
 linear_limit_y/enabled = false
-linear_limit_z/enabled = false
+angular_limit_x/enabled = false
+angular_limit_y/enabled = false
+angular_limit_z/enabled = false
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="RigidBody3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
