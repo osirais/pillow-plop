@@ -18,7 +18,7 @@ extends Node3D
 		dropper_position = value
 		_update_dropper_position()
 
-@onready var object_to_spawn = preload("res://Cube.tscn")
+@onready var object_to_spawn = preload("res://bed_level_1.tscn")
 var rigid_body: RigidBody3D
 
 func _ready():

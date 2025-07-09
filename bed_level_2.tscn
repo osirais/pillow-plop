@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://hp7qv3xgoohe"]
+
+[ext_resource type="Script" uid="uid://b5xf367wa2y2t" path="res://bed_level_2.gd" id="1_2gffk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_44cnd"]
+
+[node name="BedLevel2" type="RigidBody3D"]
+script = ExtResource("1_2gffk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_44cnd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+skeleton = NodePath("../CollisionShape3D")

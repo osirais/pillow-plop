@@ -1,7 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://bwoo70sufo0ax"]
+[gd_scene load_steps=9 format=3 uid="uid://bwoo70sufo0ax"]
 
 [ext_resource type="PackedScene" uid="uid://beslhciee5yaq" path="res://Container3D.tscn" id="1_2dftf"]
-[ext_resource type="PackedScene" uid="uid://8vm2t1tvr37y" path="res://Cube.tscn" id="2_bcbcq"]
 [ext_resource type="PackedScene" uid="uid://ca2rlv35psmj" path="res://viewer.tscn" id="4_eu7l1"]
 [ext_resource type="PackedScene" uid="uid://bq61dgyfi8ivj" path="res://dropper.tscn" id="4_js7pq"]
 
@@ -15,23 +14,12 @@ roughness = 0.1
 refraction_enabled = true
 refraction_scale = 1.0
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_2dftf"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_bcbcq"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_bcbcq"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_js7pq"]
+albedo_color = Color(1, 0, 0, 1)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_js7pq"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eu7l1"]
-albedo_color = Color(1, 0.0509804, 0.0666667, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_p1v5b"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_eu7l1"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p1v5b"]
-albedo_color = Color(1, 0.0509804, 0.0666667, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_wygdx"]
+[sub_resource type="BoxMesh" id="BoxMesh_eu7l1"]
 
 [node name="World" type="Node3D"]
 script = SubResource("GDScript_bcbcq")
@@ -44,50 +32,24 @@ height = 10.0
 depth = 10.0
 wall_material = SubResource("StandardMaterial3D_2dftf")
 
-[node name="Cube" parent="." instance=ExtResource("2_bcbcq")]
-transform = Transform3D(0.87224, 0.487356, -0.0410189, -0.488438, 0.872319, -0.0220661, 0.0250274, 0.0392826, 0.998915, 0, 0, 0)
-
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.190796, 2.81993, 3.80954)
 omni_range = 13.7057
 
-[node name="RigidBody3D" type="RigidBody3D" parent="."]
-transform = Transform3D(0.461687, 0.281345, 0.841243, 0.224375, 0.880487, -0.417611, -0.858196, 0.381559, 0.343382, -2.75082, 4.55348, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
-shape = SubResource("BoxShape3D_2dftf")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
-mesh = SubResource("BoxMesh_bcbcq")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-transform = Transform3D(0.461687, 0.281345, 0.841243, 0.224375, 0.880487, -0.417611, -0.858196, 0.381559, 0.343382, -2.75082, 4.55348, 0)
-
 [node name="Dropper" parent="." instance=ExtResource("4_js7pq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.106, 0)
-dropper_position = Vector3(0, 2, 0)
+body_color = Color(1, 0, 0, 1)
+size = Vector3(1, 1, 1)
+speed = 5.0
+dropper_position = Vector3(0, 0, 0)
 
 [node name="DropperRigidBody" type="RigidBody3D" parent="Dropper"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10.106, 0)
-collision_layer = 0
-collision_mask = 0
 gravity_scale = 0.0
 
-[node name="@CollisionShape3D@30609" type="CollisionShape3D" parent="Dropper/DropperRigidBody"]
-shape = SubResource("BoxShape3D_js7pq")
-disabled = true
+[node name="@CollisionShape3D@52088" type="CollisionShape3D" parent="Dropper/DropperRigidBody"]
+shape = SubResource("BoxShape3D_bcbcq")
 
-[node name="@MeshInstance3D@30610" type="MeshInstance3D" parent="Dropper/DropperRigidBody"]
-material_override = SubResource("StandardMaterial3D_eu7l1")
-mesh = SubResource("BoxMesh_p1v5b")
-
-[node name="@RigidBody3D@31008" type="RigidBody3D" parent="Dropper"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8.106, 0)
-gravity_scale = 0.0
-
-[node name="@CollisionShape3D@31009" type="CollisionShape3D" parent="Dropper/@RigidBody3D@31008"]
-shape = SubResource("BoxShape3D_eu7l1")
-
-[node name="@MeshInstance3D@31010" type="MeshInstance3D" parent="Dropper/@RigidBody3D@31008"]
-material_override = SubResource("StandardMaterial3D_p1v5b")
-mesh = SubResource("BoxMesh_wygdx")
+[node name="@MeshInstance3D@52089" type="MeshInstance3D" parent="Dropper/DropperRigidBody"]
+material_override = SubResource("StandardMaterial3D_js7pq")
+mesh = SubResource("BoxMesh_eu7l1")

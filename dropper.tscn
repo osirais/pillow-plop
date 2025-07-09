@@ -4,4 +4,7 @@
 
 [node name="Dropper" type="Node3D"]
 script = ExtResource("1_6csci")
-body_color = Color(1, 0.0509804, 0.0666667, 1)
+body_color = null
+size = null
+speed = null
+dropper_position = null
