@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bwoo70sufo0ax"]
+[gd_scene load_steps=8 format=3 uid="uid://bwoo70sufo0ax"]
 
 [ext_resource type="PackedScene" uid="uid://beslhciee5yaq" path="res://Container3D.tscn" id="1_2dftf"]
 [ext_resource type="Script" uid="uid://dky7sd4ek7afn" path="res://world.gd" id="1_tlwt5"]
 [ext_resource type="PackedScene" uid="uid://8vm2t1tvr37y" path="res://Cube.tscn" id="2_bcbcq"]
+[ext_resource type="PackedScene" uid="uid://cw1rb0h0vjqaw" path="res://silhouette.tscn" id="4_js7pq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2dftf"]
 transparency = 1
@@ -20,8 +21,7 @@ refraction_scale = 1.0
 script = ExtResource("1_tlwt5")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.358618, 0.610602, 22.6169)
-projection = 1
+transform = Transform3D(0.939693, -0.17101, 0.296198, 0, 0.866025, 0.5, -0.34202, -0.469846, 0.813798, 4, 5.02759, 3)
 size = 8.0
 
 [node name="Container3D" parent="." instance=ExtResource("1_2dftf")]
@@ -45,3 +45,17 @@ mesh = SubResource("BoxMesh_bcbcq")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 transform = Transform3D(0.461687, 0.281345, 0.841243, 0.224375, 0.880487, -0.417611, -0.858196, 0.381559, 0.343382, -2.75082, 4.55348, 0)
+
+[node name="SilhouetteExtract" parent="." instance=ExtResource("4_js7pq")]
+transform = Transform3D(-0.968001, 0.151958, -0.199704, 0.112377, -0.449056, -0.886408, -0.224375, -0.880487, 0.417611, 3.19283, 12.0082, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Line2D" type="Line2D" parent="CanvasLayer"]
+default_color = Color(0.113725, 1, 1, 1)
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer2"]
+offset_right = 40.0
+offset_bottom = 40.0
