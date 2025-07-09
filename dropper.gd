@@ -13,12 +13,29 @@ extends Node3D
 
 @export var speed: float = 5.0
 
+@export var dropper_position: Vector3 = Vector3.ZERO:
+	set(value):
+		dropper_position = value
+		_update_dropper_position()
+
+@onready var object_to_spawn = preload("res://Cube.tscn")
 var rigid_body: RigidBody3D
 
 func _ready():
 	if not Engine.is_editor_hint():
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	_create_body()
+
+func _update_dropper_position():
+	if rigid_body:
+		rigid_body.global_transform.origin = dropper_position
+
+func _input(event):
+	if event.is_action_pressed("click") and rigid_body:
+		var spawn_position = rigid_body.global_transform.origin - Vector3(0, size.y / 2 + 0.1, 0)
+		var instance = object_to_spawn.instantiate()
+		instance.global_transform.origin = spawn_position
+		get_tree().current_scene.add_child(instance)
 
 func _physics_process(delta):
 	if Engine.is_editor_hint() or not rigid_body:
@@ -53,6 +70,8 @@ func _create_body():
 	rigid_body.gravity_scale = 0
 	add_child(rigid_body)
 	rigid_body.owner = self.get_owner()
+
+	_update_dropper_position()
 
 	var collision = CollisionShape3D.new()
 	var box_shape = BoxShape3D.new()

@@ -1,9 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://bwoo70sufo0ax"]
 
 [ext_resource type="PackedScene" uid="uid://beslhciee5yaq" path="res://Container3D.tscn" id="1_2dftf"]
-[ext_resource type="Script" uid="uid://dky7sd4ek7afn" path="res://world.gd" id="1_tlwt5"]
 [ext_resource type="PackedScene" uid="uid://8vm2t1tvr37y" path="res://Cube.tscn" id="2_bcbcq"]
 [ext_resource type="PackedScene" uid="uid://bq61dgyfi8ivj" path="res://dropper.tscn" id="4_js7pq"]
+
+[sub_resource type="GDScript" id="GDScript_bcbcq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2dftf"]
 transparency = 1
@@ -18,12 +19,12 @@ refraction_scale = 1.0
 [sub_resource type="BoxMesh" id="BoxMesh_bcbcq"]
 
 [node name="World" type="Node3D"]
-script = ExtResource("1_tlwt5")
+script = SubResource("GDScript_bcbcq")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(3, 0, 0, 0, -1.31134e-07, 3, 0, -3, -1.31134e-07, 0, 30, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 30, 0)
 projection = 1
-size = 8.0
+size = 12.0
 
 [node name="Container3D" parent="." instance=ExtResource("1_2dftf")]
 height = 10.0
@@ -50,3 +51,5 @@ mesh = SubResource("BoxMesh_bcbcq")
 transform = Transform3D(0.461687, 0.281345, 0.841243, 0.224375, 0.880487, -0.417611, -0.858196, 0.381559, 0.343382, -2.75082, 4.55348, 0)
 
 [node name="Dropper" parent="." instance=ExtResource("4_js7pq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.106, 0)
+dropper_position = null
