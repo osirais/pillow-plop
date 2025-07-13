@@ -6,6 +6,7 @@
 
 [node name="BedLevel2" type="RigidBody3D"]
 script = ExtResource("1_2gffk")
+level = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_44cnd")
