@@ -1,8 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://bwoo70sufo0ax"]
-[gd_scene load_steps=10 format=3 uid="uid://bwoo70sufo0ax"]
+[gd_scene load_steps=17 format=3 uid="uid://bwoo70sufo0ax"]
 
 [ext_resource type="PackedScene" uid="uid://beslhciee5yaq" path="res://Container3D.tscn" id="1_2dftf"]
-[ext_resource type="PackedScene" uid="uid://0q8ew60ojf6c" path="res://pause_screen.tscn" id="2_js7pq"]
 [ext_resource type="PackedScene" uid="uid://ca2rlv35psmj" path="res://viewer.tscn" id="4_eu7l1"]
 [ext_resource type="PackedScene" uid="uid://bq61dgyfi8ivj" path="res://dropper.tscn" id="4_js7pq"]
 [ext_resource type="PackedScene" uid="uid://e4spe0phyoyc" path="res://juice_system.tscn" id="4_p1v5b"]
@@ -12,6 +10,7 @@
 [ext_resource type="Script" uid="uid://ckpf8rvmtix4e" path="res://game_manager.gd" id="8_bah7m"]
 [ext_resource type="Script" uid="uid://cs7pqk2adaj4y" path="res://bounds_checker.gd" id="9_fv4w7"]
 [ext_resource type="Script" uid="uid://6srf38lukxtb" path="res://game_stats.gd" id="10_fvag4"]
+[ext_resource type="PackedScene" uid="uid://0q8ew60ojf6c" path="res://pause_screen.tscn" id="11_kva58"]
 
 [sub_resource type="GDScript" id="GDScript_bcbcq"]
 script/source = "extends Node
@@ -34,23 +33,18 @@ roughness = 0.1
 refraction_enabled = true
 refraction_scale = 1.0
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_fvag4"]
-[sub_resource type="BoxShape3D" id="BoxShape3D_js7pq"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_f5c0m"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kva58"]
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eu7l1"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b2ar6"]
 albedo_color = Color(1, 0, 0, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_f5c0m"]
-[sub_resource type="BoxMesh" id="BoxMesh_p1v5b"]
+[sub_resource type="BoxMesh" id="BoxMesh_ee7l0"]
 
 [node name="World" type="Node3D"]
 script = SubResource("GDScript_bcbcq")
 
-[node name="PauseScreen" parent="." instance=ExtResource("2_js7pq")]
-
 [node name="Viewer" parent="." instance=ExtResource("4_eu7l1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 
 [node name="Container3D" parent="." instance=ExtResource("1_2dftf")]
 height = 10.0
@@ -66,16 +60,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.106, 0)
 body_color = Color(1, 0, 0, 1)
 
 [node name="DropperCharacterBody" type="CharacterBody3D" parent="Dropper"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10.106, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10.1, 0)
 
-[node name="@CollisionShape3D@34970" type="CollisionShape3D" parent="Dropper/DropperCharacterBody"]
-shape = SubResource("BoxShape3D_fvag4")
-[node name="@CollisionShape3D@21759" type="CollisionShape3D" parent="Dropper/DropperCharacterBody"]
-shape = SubResource("BoxShape3D_js7pq")
+[node name="@CollisionShape3D@21776" type="CollisionShape3D" parent="Dropper/DropperCharacterBody"]
+shape = SubResource("BoxShape3D_f5c0m")
 
-[node name="@MeshInstance3D@34971" type="MeshInstance3D" parent="Dropper/DropperCharacterBody"]
-material_override = SubResource("StandardMaterial3D_kva58")
-mesh = SubResource("BoxMesh_f5c0m")
+[node name="@MeshInstance3D@21777" type="MeshInstance3D" parent="Dropper/DropperCharacterBody"]
+material_override = SubResource("StandardMaterial3D_b2ar6")
+mesh = SubResource("BoxMesh_ee7l0")
 
 [node name="JuiceSystem" parent="." instance=ExtResource("4_p1v5b")]
 
@@ -94,6 +86,5 @@ script = ExtResource("9_fv4w7")
 
 [node name="GameStats" type="Node" parent="."]
 script = ExtResource("10_fvag4")
-[node name="@MeshInstance3D@21760" type="MeshInstance3D" parent="Dropper/DropperCharacterBody"]
-material_override = SubResource("StandardMaterial3D_eu7l1")
-mesh = SubResource("BoxMesh_p1v5b")
+
+[node name="PauseScreen" parent="." instance=ExtResource("11_kva58")]
