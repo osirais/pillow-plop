@@ -6,4 +6,5 @@
 script = ExtResource("1_tfsf5")
 
 [node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.159657, 0.987173, 0, -0.987173, 0.159657, 0, 0, 0)
 fov = 90.0

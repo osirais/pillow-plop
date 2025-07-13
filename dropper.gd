@@ -20,7 +20,7 @@ extends Node3D
 
 @onready var base_bed_script = preload("res://base_bed.gd")
 var character_body: CharacterBody3D
-var game_ui: GameUI
+var game_ui: SimpleGameUI
 var next_bed_level: int = 1
 
 
@@ -35,32 +35,17 @@ func _ready():
 	if not Engine.is_editor_hint():
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		
-		
-		var effects_manager = EffectsManager.new()
-		effects_manager.name = "EffectsManager"
-		get_tree().current_scene.add_child(effects_manager)
-		
-		
-		var bounds_checker = BoundsChecker.new()
-		bounds_checker.name = "BoundsChecker"
-		get_tree().current_scene.add_child(bounds_checker)
-		
-		
-		var sound_manager = SoundManager.new()
-		sound_manager.name = "SoundManager"
-		get_tree().current_scene.add_child(sound_manager)
-		
-		
+		# Initialize game manager
 		var game_manager = GameManager.new()
 		game_manager.name = "GameManager"
 		get_tree().current_scene.add_child(game_manager)
 		
-		
-		game_ui = GameUI.new()
-		game_ui.name = "GameUI"
+		# Create and add Simple UI
+		game_ui = SimpleGameUI.new()
+		game_ui.name = "SimpleGameUI"
 		get_tree().current_scene.add_child(game_ui)
 		
-		
+		# Set initial next bed level
 		next_bed_level = _get_random_bed_level()
 		if game_ui:
 			game_ui.call_deferred("update_next_bed_preview", next_bed_level)
@@ -83,8 +68,16 @@ func _input(event):
 			SoundManager.instance.play_drop_sound()
 		
 		
+		# Record bed drop
+		if GameStats.instance:
+			GameStats.instance.record_bed_drop()
+		
+		# Create drop ripple effect
+		if JuiceSystem.instance:
+			JuiceSystem.instance.create_drop_ripple(spawn_position)
+		
 		next_bed_level = _get_random_bed_level()
-		if game_ui and game_ui.next_bed_preview:
+		if game_ui:
 			game_ui.update_next_bed_preview(next_bed_level)
 
 func _get_random_bed_level() -> int:

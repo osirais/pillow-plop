@@ -1,8 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://bwoo70sufo0ax"]
+[gd_scene load_steps=16 format=3 uid="uid://bwoo70sufo0ax"]
 
 [ext_resource type="PackedScene" uid="uid://beslhciee5yaq" path="res://Container3D.tscn" id="1_2dftf"]
 [ext_resource type="PackedScene" uid="uid://ca2rlv35psmj" path="res://viewer.tscn" id="4_eu7l1"]
 [ext_resource type="PackedScene" uid="uid://bq61dgyfi8ivj" path="res://dropper.tscn" id="4_js7pq"]
+[ext_resource type="PackedScene" uid="uid://e4spe0phyoyc" path="res://juice_system.tscn" id="4_p1v5b"]
+[ext_resource type="PackedScene" uid="uid://cmnfho0h04h6q" path="res://sound_manager.tscn" id="5_eu7l1"]
+[ext_resource type="Script" uid="uid://b8iul3v5is0qm" path="res://game_canvas.gd" id="6_p1v5b"]
+[ext_resource type="PackedScene" uid="uid://rmj0qq4hxkts" path="res://effects_manager.tscn" id="7_wygdx"]
+[ext_resource type="Script" uid="uid://ckpf8rvmtix4e" path="res://game_manager.gd" id="8_bah7m"]
+[ext_resource type="Script" uid="uid://cs7pqk2adaj4y" path="res://bounds_checker.gd" id="9_fv4w7"]
+[ext_resource type="Script" uid="uid://6srf38lukxtb" path="res://game_stats.gd" id="10_fvag4"]
 
 [sub_resource type="GDScript" id="GDScript_bcbcq"]
 
@@ -14,12 +21,12 @@ roughness = 0.1
 refraction_enabled = true
 refraction_scale = 1.0
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_bcbcq"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_fvag4"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_js7pq"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kva58"]
 albedo_color = Color(1, 0, 0, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_eu7l1"]
+[sub_resource type="BoxMesh" id="BoxMesh_f5c0m"]
 
 [node name="World" type="Node3D"]
 script = SubResource("GDScript_bcbcq")
@@ -39,16 +46,31 @@ omni_range = 13.7057
 [node name="Dropper" parent="." instance=ExtResource("4_js7pq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.106, 0)
 body_color = Color(1, 0, 0, 1)
-size = Vector3(1, 1, 1)
-speed = 5.0
-dropper_position = Vector3(0, 0, 0)
 
 [node name="DropperCharacterBody" type="CharacterBody3D" parent="Dropper"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10.1, 0)
 
-[node name="@CollisionShape3D@21772" type="CollisionShape3D" parent="Dropper/DropperCharacterBody"]
-shape = SubResource("BoxShape3D_bcbcq")
+[node name="@CollisionShape3D@34970" type="CollisionShape3D" parent="Dropper/DropperCharacterBody"]
+shape = SubResource("BoxShape3D_fvag4")
 
-[node name="@MeshInstance3D@21773" type="MeshInstance3D" parent="Dropper/DropperCharacterBody"]
-material_override = SubResource("StandardMaterial3D_js7pq")
-mesh = SubResource("BoxMesh_eu7l1")
+[node name="@MeshInstance3D@34971" type="MeshInstance3D" parent="Dropper/DropperCharacterBody"]
+material_override = SubResource("StandardMaterial3D_kva58")
+mesh = SubResource("BoxMesh_f5c0m")
+
+[node name="JuiceSystem" parent="." instance=ExtResource("4_p1v5b")]
+
+[node name="SoundManager" parent="." instance=ExtResource("5_eu7l1")]
+
+[node name="GameCanvas" type="CanvasLayer" parent="."]
+script = ExtResource("6_p1v5b")
+
+[node name="EffectsManager" parent="." instance=ExtResource("7_wygdx")]
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("8_bah7m")
+
+[node name="BoundsChecker" type="Node3D" parent="."]
+script = ExtResource("9_fv4w7")
+
+[node name="GameStats" type="Node" parent="."]
+script = ExtResource("10_fvag4")

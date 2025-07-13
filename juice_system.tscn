@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://e4spe0phyoyc"]
+
+[ext_resource type="Script" uid="uid://b6ycc5bj1v04v" path="res://juice_system.gd" id="1_wcv47"]
+
+[node name="JuiceSystem" type="Node"]
+script = ExtResource("1_wcv47")
