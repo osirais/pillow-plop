@@ -2,5 +2,5 @@
 extends BaseBed
 
 func _ready():
-	level = 2
+	level = 5
 	super._ready()

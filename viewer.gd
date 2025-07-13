@@ -13,7 +13,6 @@ func _unhandled_input(event):
 	if event is InputEventMouseMotion:
 		yaw -= event.relative.x * sensitivity
 		pitch -= event.relative.y * sensitivity
-		pitch = clamp(pitch, deg_to_rad(-89), deg_to_rad(89))  # prevent flipping
-
+		pitch = clamp(pitch, deg_to_rad(-89), deg_to_rad(89))  
 		rotation.y = yaw
 		camera.rotation.x = pitch

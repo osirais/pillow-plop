@@ -11,6 +11,7 @@ transparency = 1
 cull_mode = 2
 albedo_color = Color(0.0784314, 1, 1, 0.313726)
 roughness = 0.1
+refraction_enabled = true
 refraction_scale = 1.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bcbcq"]
@@ -43,11 +44,11 @@ speed = 5.0
 dropper_position = Vector3(0, 0, 0)
 
 [node name="DropperCharacterBody" type="CharacterBody3D" parent="Dropper"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10.106, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10.1, 0)
 
-[node name="@CollisionShape3D@63256" type="CollisionShape3D" parent="Dropper/DropperCharacterBody"]
+[node name="@CollisionShape3D@21772" type="CollisionShape3D" parent="Dropper/DropperCharacterBody"]
 shape = SubResource("BoxShape3D_bcbcq")
 
-[node name="@MeshInstance3D@63257" type="MeshInstance3D" parent="Dropper/DropperCharacterBody"]
+[node name="@MeshInstance3D@21773" type="MeshInstance3D" parent="Dropper/DropperCharacterBody"]
 material_override = SubResource("StandardMaterial3D_js7pq")
 mesh = SubResource("BoxMesh_eu7l1")

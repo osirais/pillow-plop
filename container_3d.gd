@@ -21,7 +21,6 @@ extends Node3D
 		wall_thickness = value
 		_create_container()
 
-# Export a material property to assign from the editor
 @export var wall_material: Material
 
 func _ready():
@@ -57,7 +56,6 @@ func _add_wall(position: Vector3, size: Vector3, name: String):
 	box.size = size
 	mesh.mesh = box
 
-	# Assign the exported material if set
 	if wall_material != null:
 		mesh.material_override = wall_material
 
